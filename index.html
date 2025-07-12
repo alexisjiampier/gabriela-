@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños Gabriela!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Fondo con degradado animado */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #000000, #8B0000, #4B0082, #FF1493, #8B0000, #000000);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Contenedor principal */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            height: 100dvh; /* Para navegadores móviles modernos */
+            position: relative;
+            z-index: 1;
+            padding: 10px;
+        }
+
+        /* Estilos de la carta */
+        .card {
+            width: min(350px, 90vw);
+            height: min(450px, 70vh);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 192, 203, 0.3));
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            border-image: linear-gradient(45deg, #FF1493, #8B0000, #4B0082) 1;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 20, 147, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.6s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 20, 147, 0.05) 10px,
+                rgba(255, 20, 147, 0.05) 20px
+            );
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-50%) translateY(-50%) rotate(0deg);
+            }
+            100% {
+                transform: translateX(-50%) translateY(-50%) rotate(360deg);
+            }
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(255, 20, 147, 0.3);
+        }
+
+        /* Decoraciones de corazones */
+        .heart-decoration {
+            position: absolute;
+            color: rgba(255, 20, 147, 0.3);
+            font-size: 20px;
+            animation: floatHearts 4s ease-in-out infinite;
+        }
+
+        .heart-decoration:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .heart-decoration:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+        .heart-decoration:nth-child(3) { bottom: 15%; left: 20%; animation-delay: 2s; }
+        .heart-decoration:nth-child(4) { bottom: 25%; right: 10%; animation-delay: 3s; }
+
+        @keyframes floatHearts {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(10deg);
+            }
+        }
+
+        /* Decoración de estrellas */
+        .star-decoration {
+            position: absolute;
+            color: rgba(139, 0, 0, 0.3);
+            font-size: 15px;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+
+        .star-decoration:nth-child(5) { top: 5%; left: 50%; animation-delay: 0.5s; }
+        .star-decoration:nth-child(6) { top: 50%; right: 5%; animation-delay: 1.5s; }
+        .star-decoration:nth-child(7) { bottom: 10%; left: 50%; animation-delay: 2.5s; }
+        .star-decoration:nth-child(8) { top: 50%; left: 5%; animation-delay: 3.5s; }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Sobre */
+        .envelope {
+            font-size: 80px;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Botón abrir */
+        .open-btn {
+            padding: 15px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, #8B0000, #4B0082);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(139, 0, 0, 0.4);
+        }
+
+        .open-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(139, 0, 0, 0.6);
+        }
+
+        /* Mensaje de cumpleaños */
+        .birthday-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            text-align: center;
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .birthday-message.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .birthday-message h1 {
+            font-size: 48px;
+            color: #8B0000;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse 1s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .birthday-message p {
+            font-size: 24px;
+            color: #4B0082;
+            font-weight: bold;
+        }
+
+        /* Segunda carta */
+        .second-card {
+            position: absolute;
+            width: min(350px, 90vw);
+            height: min(450px, 70vh);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 192, 203, 0.3));
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            border-image: linear-gradient(45deg, #FF1493, #8B0000, #4B0082) 1;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 20, 147, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transform: scale(0) rotate(180deg);
+            transition: all 1s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .second-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 10px,
+                rgba(139, 0, 0, 0.05) 10px,
+                rgba(139, 0, 0, 0.05) 20px
+            );
+            animation: shimmer 3s linear infinite reverse;
+        }
+
+        .second-card.show {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .second-card h2 {
+            font-size: 32px;
+            color: #8B0000;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .second-card p {
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .heart {
+            font-size: 40px;
+            color: #FF1493;
+            animation: heartbeat 1.5s ease infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Partículas de confeti */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #FF1493;
+            opacity: 0;
+        }
+
+        .confetti.show {
+            animation: confettiFall 3s ease-out forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Ocultar elementos */
+        .hidden {
+            display: none;
+        }
+
+        /* Media queries para móviles */
+        @media (max-width: 768px) {
+            .envelope {
+                font-size: 60px;
+                margin-bottom: 20px;
+            }
+
+            .open-btn {
+                padding: 12px 30px;
+                font-size: 18px;
+            }
+
+            .birthday-message h1 {
+                font-size: 36px;
+                margin-bottom: 15px;
+            }
+
+            .birthday-message p {
+                font-size: 20px;
+            }
+
+            .second-card h2 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .second-card p {
+                font-size: 16px;
+                line-height: 1.6;
+                margin-bottom: 15px;
+            }
+
+            .heart {
+                font-size: 30px;
+            }
+
+            .heart-decoration {
+                font-size: 16px;
+            }
+
+            .star-decoration {
+                font-size: 12px;
+            }
+
+            /* Ajustar posiciones de decoraciones en móvil */
+            .heart-decoration:nth-child(1) { top: 5%; left: 5%; }
+            .heart-decoration:nth-child(2) { top: 10%; right: 5%; }
+            .heart-decoration:nth-child(3) { bottom: 10%; left: 10%; }
+            .heart-decoration:nth-child(4) { bottom: 15%; right: 5%; }
+        }
+
+        @media (max-width: 480px) {
+            .card, .second-card {
+                width: 95vw;
+                height: 80vh;
+                max-height: 600px;
+            }
+
+            .envelope {
+                font-size: 50px;
+            }
+
+            .birthday-message h1 {
+                font-size: 28px;
+            }
+
+            .birthday-message p {
+                font-size: 18px;
+            }
+
+            .second-card h2 {
+                font-size: 22px;
+            }
+
+            .second-card p {
+                font-size: 14px;
+                padding: 0 10px;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .card, .second-card {
+                height: 90vh;
+            }
+
+            .envelope {
+                font-size: 50px;
+                margin-bottom: 15px;
+            }
+
+            .open-btn {
+                padding: 10px 25px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    
+    <div class="container">
+        <!-- Primera carta -->
+        <div class="card" id="firstCard">
+            <div class="heart-decoration">❤️</div>
+            <div class="heart-decoration">💕</div>
+            <div class="heart-decoration">💖</div>
+            <div class="heart-decoration">💗</div>
+            <div class="star-decoration">✨</div>
+            <div class="star-decoration">⭐</div>
+            <div class="star-decoration">✨</div>
+            <div class="star-decoration">⭐</div>
+            <div class="envelope">✉️</div>
+            <button class="open-btn" onclick="openCard()">Abrir</button>
+            <div class="birthday-message" id="birthdayMessage">
+                <h1>¡Feliz Cumpleaños!</h1>
+                <p>Gabriela</p>
+            </div>
+        </div>
+        
+        <!-- Segunda carta -->
+        <div class="second-card" id="secondCard">
+            <div class="heart-decoration">❤️</div>
+            <div class="heart-decoration">💕</div>
+            <div class="heart-decoration">💖</div>
+            <div class="heart-decoration">💗</div>
+            <div class="star-decoration">✨</div>
+            <div class="star-decoration">⭐</div>
+            <div class="star-decoration">✨</div>
+            <div class="star-decoration">⭐</div>
+            <h2>Querida Gabriela</h2>
+            <p>
+                Espero que la pases súper lindo en tu día especial. 
+                Eres una chica increíble, llena de luz y alegría.
+            </p>
+            <p>
+                Tu sonrisa ilumina el mundo de todos los que te rodean.
+                Que este nuevo año de vida esté lleno de aventuras maravillosas,
+                sueños cumplidos y momentos inolvidables.
+            </p>
+            <p>
+                ¡Eres extraordinaria y mereces toda la felicidad del mundo!
+            </p>
+            <div class="heart">❤️</div>
+        </div>
+    </div>
+
+    <script>
+        let firstCardClicked = false;
+
+        function openCard() {
+            if (!firstCardClicked) {
+                firstCardClicked = true;
+                
+                // Ocultar el sobre y el botón
+                document.querySelector('.envelope').style.display = 'none';
+                document.querySelector('.open-btn').style.display = 'none';
+                
+                // Mostrar el mensaje de cumpleaños
+                document.getElementById('birthdayMessage').classList.add('show');
+                
+                // Crear confeti
+                createConfetti();
+                
+                // Después de 3 segundos, cambiar a la segunda carta
+                setTimeout(() => {
+                    document.getElementById('firstCard').classList.add('hidden');
+                    document.getElementById('secondCard').classList.add('show');
+                }, 3000);
+            }
+        }
+
+        function createConfetti() {
+            const colors = ['#FF1493', '#8B0000', '#4B0082', '#FFD700', '#FF69B4'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti show';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.transform = `scale(${Math.random() * 1 + 0.5})`;
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 50);
+            }
+        }
+    </script>
+</body>
+</html>
