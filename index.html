@@ -29,6 +29,12 @@
             background-size: 400% 400%;
             animation: gradientShift 8s ease infinite;
             z-index: -1;
+            transition: all 1s ease;
+        }
+
+        .background.dark {
+            background: #000000;
+            animation: none;
         }
 
         @keyframes gradientShift {
@@ -49,20 +55,16 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            height: 100dvh; /* Para navegadores móviles modernos */
             position: relative;
             z-index: 1;
-            padding: 10px;
+            padding: 20px;
         }
 
         /* Estilos de la carta */
         .card {
-            width: min(350px, 90vw);
-            height: min(450px, 70vh);
+            width: 320px;
+            height: 420px;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 192, 203, 0.3));
-            border: 3px solid transparent;
-            background-clip: padding-box;
-            border-image: linear-gradient(45deg, #FF1493, #8B0000, #4B0082) 1;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 20, 147, 0.2);
             display: flex;
@@ -70,36 +72,9 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            transform-style: preserve-3d;
             transition: all 0.6s ease;
             cursor: pointer;
             overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255, 20, 147, 0.05) 10px,
-                rgba(255, 20, 147, 0.05) 20px
-            );
-            animation: shimmer 3s linear infinite;
-        }
-
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-50%) translateY(-50%) rotate(0deg);
-            }
-            100% {
-                transform: translateX(-50%) translateY(-50%) rotate(360deg);
-            }
         }
 
         .card:hover {
@@ -110,7 +85,7 @@
         /* Decoraciones de corazones */
         .heart-decoration {
             position: absolute;
-            color: rgba(255, 20, 147, 0.3);
+            color: rgba(255, 20, 147, 0.4);
             font-size: 20px;
             animation: floatHearts 4s ease-in-out infinite;
         }
@@ -132,8 +107,8 @@
         /* Decoración de estrellas */
         .star-decoration {
             position: absolute;
-            color: rgba(139, 0, 0, 0.3);
-            font-size: 15px;
+            color: rgba(139, 0, 0, 0.4);
+            font-size: 16px;
             animation: twinkle 2s ease-in-out infinite;
         }
 
@@ -144,7 +119,7 @@
 
         @keyframes twinkle {
             0%, 100% {
-                opacity: 0.3;
+                opacity: 0.4;
                 transform: scale(1);
             }
             50% {
@@ -155,8 +130,8 @@
 
         /* Sobre */
         .envelope {
-            font-size: 80px;
-            margin-bottom: 30px;
+            font-size: 70px;
+            margin-bottom: 25px;
             animation: float 3s ease-in-out infinite;
         }
 
@@ -205,7 +180,7 @@
         }
 
         .birthday-message h1 {
-            font-size: 48px;
+            font-size: 42px;
             color: #8B0000;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -230,41 +205,22 @@
         /* Segunda carta */
         .second-card {
             position: absolute;
-            width: min(350px, 90vw);
-            height: min(450px, 70vh);
+            width: 320px;
+            height: 420px;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 192, 203, 0.3));
-            border: 3px solid transparent;
-            background-clip: padding-box;
-            border-image: linear-gradient(45deg, #FF1493, #8B0000, #4B0082) 1;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 20, 147, 0.2);
+            box-shadow: 0 0 100px rgba(255, 20, 147, 0.5), 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 20, 147, 0.2);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 30px;
             opacity: 0;
             transform: scale(0) rotate(180deg);
             transition: all 1s ease;
             overflow: hidden;
             position: relative;
-        }
-
-        .second-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                -45deg,
-                transparent,
-                transparent 10px,
-                rgba(139, 0, 0, 0.05) 10px,
-                rgba(139, 0, 0, 0.05) 20px
-            );
-            animation: shimmer 3s linear infinite reverse;
+            z-index: 10;
         }
 
         .second-card.show {
@@ -273,7 +229,7 @@
         }
 
         .second-card h2 {
-            font-size: 32px;
+            font-size: 36px;
             color: #8B0000;
             margin-bottom: 30px;
             text-align: center;
@@ -300,6 +256,16 @@
             50% {
                 transform: scale(1.2);
             }
+        }
+
+        /* Fuegos artificiales simplificados */
+        .firework-dot {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 5;
         }
 
         /* Partículas de confeti */
@@ -332,9 +298,14 @@
         }
 
         /* Media queries para móviles */
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
+            .card, .second-card {
+                width: 280px;
+                height: 400px;
+            }
+
             .envelope {
-                font-size: 60px;
+                font-size: 50px;
                 margin-bottom: 20px;
             }
 
@@ -344,16 +315,19 @@
             }
 
             .birthday-message h1 {
-                font-size: 36px;
-                margin-bottom: 15px;
+                font-size: 32px;
             }
 
             .birthday-message p {
                 font-size: 20px;
             }
 
+            .second-card {
+                padding: 20px;
+            }
+
             .second-card h2 {
-                font-size: 24px;
+                font-size: 28px;
                 margin-bottom: 20px;
             }
 
@@ -363,10 +337,6 @@
                 margin-bottom: 15px;
             }
 
-            .heart {
-                font-size: 30px;
-            }
-
             .heart-decoration {
                 font-size: 16px;
             }
@@ -374,62 +344,32 @@
             .star-decoration {
                 font-size: 12px;
             }
-
-            /* Ajustar posiciones de decoraciones en móvil */
-            .heart-decoration:nth-child(1) { top: 5%; left: 5%; }
-            .heart-decoration:nth-child(2) { top: 10%; right: 5%; }
-            .heart-decoration:nth-child(3) { bottom: 10%; left: 10%; }
-            .heart-decoration:nth-child(4) { bottom: 15%; right: 5%; }
-        }
-
-        @media (max-width: 480px) {
-            .card, .second-card {
-                width: 95vw;
-                height: 80vh;
-                max-height: 600px;
-            }
-
-            .envelope {
-                font-size: 50px;
-            }
-
-            .birthday-message h1 {
-                font-size: 28px;
-            }
-
-            .birthday-message p {
-                font-size: 18px;
-            }
-
-            .second-card h2 {
-                font-size: 22px;
-            }
-
-            .second-card p {
-                font-size: 14px;
-                padding: 0 10px;
-            }
         }
 
         @media (max-height: 600px) {
             .card, .second-card {
-                height: 90vh;
+                height: 350px;
             }
 
             .envelope {
-                font-size: 50px;
+                font-size: 45px;
                 margin-bottom: 15px;
             }
 
-            .open-btn {
-                padding: 10px 25px;
-                font-size: 16px;
+            .second-card h2 {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+
+            .second-card p {
+                font-size: 14px;
+                margin-bottom: 10px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="background"></div>
+    <div class="background" id="background"></div>
     
     <div class="container">
         <!-- Primera carta -->
@@ -460,7 +400,7 @@
             <div class="star-decoration">⭐</div>
             <div class="star-decoration">✨</div>
             <div class="star-decoration">⭐</div>
-            <h2>Querida Gabriela</h2>
+            <h2>Gabriela</h2>
             <p>
                 Espero que la pases súper lindo en tu día especial. 
                 Eres una chica increíble, llena de luz y alegría.
@@ -498,6 +438,14 @@
                 setTimeout(() => {
                     document.getElementById('firstCard').classList.add('hidden');
                     document.getElementById('secondCard').classList.add('show');
+                    
+                    // Oscurecer el fondo
+                    document.getElementById('background').classList.add('dark');
+                    
+                    // Crear fuegos artificiales
+                    setTimeout(() => {
+                        createFireworks();
+                    }, 500);
                 }, 3000);
             }
         }
@@ -518,6 +466,101 @@
                 }, i * 50);
             }
         }
+
+        function createFireworks() {
+            const colors = ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFD700', '#FF69B4']; // Mayoría blancos, algunos dorados y rosas
+            
+            // Crear fuegos artificiales simples
+            const launchFirework = () => {
+                const x = 15 + Math.random() * 70; // Entre 15% y 85% del ancho
+                const y = 15 + Math.random() * 35; // Entre 15% y 50% del alto
+                const mainColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Crear punto de explosión simple
+                const explosion = document.createElement('div');
+                explosion.style.position = 'absolute';
+                explosion.style.left = x + '%';
+                explosion.style.top = y + '%';
+                explosion.style.width = '4px';
+                explosion.style.height = '4px';
+                explosion.style.backgroundColor = mainColor;
+                explosion.style.borderRadius = '50%';
+                explosion.style.transform = 'translate(-50%, -50%)';
+                explosion.style.zIndex = '5';
+                document.body.appendChild(explosion);
+                
+                // Expandir y desvanecer
+                setTimeout(() => {
+                    explosion.style.transition = 'all 0.8s ease-out';
+                    explosion.style.width = '8px';
+                    explosion.style.height = '8px';
+                    explosion.style.opacity = '0.8';
+                }, 10);
+                
+                // Crear puntos simples alrededor
+                setTimeout(() => {
+                    explosion.remove();
+                    
+                    // Solo 8 puntos en círculo
+                    for (let i = 0; i < 8; i++) {
+                        const dot = document.createElement('div');
+                        dot.style.position = 'absolute';
+                        dot.style.left = x + '%';
+                        dot.style.top = y + '%';
+                        dot.style.width = '3px';
+                        dot.style.height = '3px';
+                        dot.style.backgroundColor = i < 6 ? '#FFFFFF' : colors[Math.floor(Math.random() * colors.length)];
+                        dot.style.borderRadius = '50%';
+                        dot.style.transform = 'translate(-50%, -50%)';
+                        dot.style.zIndex = '5';
+                        dot.style.opacity = '1';
+                        
+                        const angle = (i * 45) * Math.PI / 180; // 8 puntos, 45 grados cada uno
+                        const distance = 30;
+                        
+                        document.body.appendChild(dot);
+                        
+                        // Animar cada punto
+                        setTimeout(() => {
+                            dot.style.transition = 'all 1.5s ease-out';
+                            dot.style.transform = `translate(calc(-50% + ${Math.cos(angle) * distance}px), calc(-50% + ${Math.sin(angle) * distance}px))`;
+                            dot.style.opacity = '0';
+                        }, 50);
+                        
+                        setTimeout(() => dot.remove(), 1600);
+                    }
+                }, 100);
+            };
+            
+            // Lanzar fuegos artificiales de forma más espaciada y elegante
+            let count = 0;
+            const interval = setInterval(() => {
+                launchFirework();
+                count++;
+                if (count > 8) { // Solo 8 fuegos artificiales en total
+                    clearInterval(interval);
+                }
+            }, 1200); // Más espacio entre cada uno
+            
+            // Primer fuego artificial
+            launchFirework();
+        }
+
+        // Agregar animación para las partículas
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes particleMove {
+                0% {
+                    transform: translate(-50%, -50%);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty)));
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
