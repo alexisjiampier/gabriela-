@@ -12,22 +12,26 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            width: 100vw;
             height: 100vh;
             overflow: hidden;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         /* Fondo con degradado animado */
         .background {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, #000000, #8B0000, #4B0082, #FF1493, #8B0000, #000000);
-            background-size: 400% 400%;
-            animation: gradientShift 8s ease infinite;
+            background: linear-gradient(135deg, #4B0082, #8B0000, #FF1493, #8B0000, #4B0082);
+            background-size: 300% 300%;
+            animation: gradientShift 10s ease infinite;
             z-index: -1;
             transition: all 1s ease;
         }
@@ -38,115 +42,67 @@
         }
 
         @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
         }
 
         /* Contenedor principal */
         .container {
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             position: relative;
             z-index: 1;
-            padding: 20px;
         }
 
         /* Estilos de la carta */
         .card {
-            width: 320px;
-            height: 420px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 192, 203, 0.3));
+            width: 90%;
+            max-width: 320px;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 192, 203, 0.4));
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 20, 147, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
-            transition: all 0.6s ease;
-            cursor: pointer;
-            overflow: hidden;
+            padding: 20px;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(255, 20, 147, 0.3);
-        }
-
-        /* Decoraciones de corazones */
-        .heart-decoration {
+        /* Decoraciones flotantes */
+        .floating-decoration {
             position: absolute;
-            color: rgba(255, 20, 147, 0.4);
-            font-size: 20px;
-            animation: floatHearts 4s ease-in-out infinite;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.6;
+            font-size: 14px;
         }
 
-        .heart-decoration:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-        .heart-decoration:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
-        .heart-decoration:nth-child(3) { bottom: 15%; left: 20%; animation-delay: 2s; }
-        .heart-decoration:nth-child(4) { bottom: 25%; right: 10%; animation-delay: 3s; }
+        .floating-decoration:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-decoration:nth-child(2) { top: 15%; right: 10%; animation-delay: 1s; }
+        .floating-decoration:nth-child(3) { bottom: 20%; left: 15%; animation-delay: 2s; }
+        .floating-decoration:nth-child(4) { bottom: 15%; right: 15%; animation-delay: 3s; }
+        .floating-decoration:nth-child(5) { top: 50%; left: 5%; animation-delay: 4s; }
+        .floating-decoration:nth-child(6) { top: 50%; right: 5%; animation-delay: 5s; }
 
-        @keyframes floatHearts {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-15px) rotate(10deg);
-            }
-        }
-
-        /* Decoración de estrellas */
-        .star-decoration {
-            position: absolute;
-            color: rgba(139, 0, 0, 0.4);
-            font-size: 16px;
-            animation: twinkle 2s ease-in-out infinite;
-        }
-
-        .star-decoration:nth-child(5) { top: 5%; left: 50%; animation-delay: 0.5s; }
-        .star-decoration:nth-child(6) { top: 50%; right: 5%; animation-delay: 1.5s; }
-        .star-decoration:nth-child(7) { bottom: 10%; left: 50%; animation-delay: 2.5s; }
-        .star-decoration:nth-child(8) { top: 50%; left: 5%; animation-delay: 3.5s; }
-
-        @keyframes twinkle {
-            0%, 100% {
-                opacity: 0.4;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.2);
-            }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
         }
 
         /* Sobre */
         .envelope {
-            font-size: 70px;
-            margin-bottom: 25px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
+            font-size: 60px;
+            margin-bottom: 30px;
         }
 
         /* Botón abrir */
         .open-btn {
-            padding: 15px 40px;
+            padding: 15px 45px;
             font-size: 20px;
             font-weight: bold;
             color: white;
@@ -158,42 +114,37 @@
             box-shadow: 0 5px 20px rgba(139, 0, 0, 0.4);
         }
 
-        .open-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(139, 0, 0, 0.6);
+        .open-btn:active {
+            transform: scale(0.95);
         }
 
         /* Mensaje de cumpleaños */
         .birthday-message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
+            display: none;
             text-align: center;
-            opacity: 0;
-            transition: all 0.8s ease;
+            animation: fadeInScale 0.8s ease forwards;
         }
 
         .birthday-message.show {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
+            display: block;
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .birthday-message h1 {
-            font-size: 42px;
+            font-size: 36px;
             color: #8B0000;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: pulse 1s ease infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .birthday-message p {
@@ -204,81 +155,78 @@
 
         /* Segunda carta */
         .second-card {
-            position: absolute;
-            width: 320px;
-            height: 420px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 192, 203, 0.3));
+            width: 90%;
+            max-width: 320px;
+            min-height: 500px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 192, 203, 0.4));
             border-radius: 20px;
-            box-shadow: 0 0 100px rgba(255, 20, 147, 0.5), 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 20, 147, 0.2);
-            display: flex;
+            box-shadow: 0 0 80px rgba(255, 20, 147, 0.5), 0 10px 40px rgba(0, 0, 0, 0.3);
+            display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px;
-            opacity: 0;
-            transform: scale(0) rotate(180deg);
-            transition: all 1s ease;
-            overflow: hidden;
+            padding: 30px 25px;
             position: relative;
             z-index: 10;
+            text-align: center;
         }
 
         .second-card.show {
-            opacity: 1;
-            transform: scale(1) rotate(0deg);
+            display: flex;
+            animation: rotateIn 1s ease forwards;
+        }
+
+        @keyframes rotateIn {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(180deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
         }
 
         .second-card h2 {
-            font-size: 36px;
+            font-size: 32px;
             color: #8B0000;
-            margin-bottom: 30px;
-            text-align: center;
+            margin-bottom: 25px;
         }
 
         .second-card p {
-            font-size: 18px;
+            font-size: 17px;
             color: #333;
-            text-align: center;
-            line-height: 1.8;
-            margin-bottom: 20px;
+            line-height: 1.7;
+            margin-bottom: 18px;
         }
 
         .heart {
-            font-size: 40px;
-            color: #FF1493;
+            font-size: 35px;
+            margin-top: 10px;
             animation: heartbeat 1.5s ease infinite;
         }
 
         @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
-        /* Fuegos artificiales simplificados */
-        .firework-dot {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            opacity: 0;
-            z-index: 5;
+        /* Confeti mejorado */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 8;
         }
 
-        /* Partículas de confeti */
         .confetti {
             position: absolute;
             width: 10px;
             height: 10px;
             background: #FF1493;
-            opacity: 0;
-        }
-
-        .confetti.show {
-            animation: confettiFall 3s ease-out forwards;
         }
 
         @keyframes confettiFall {
@@ -292,6 +240,26 @@
             }
         }
 
+        /* Fuegos artificiales simplificados */
+        .firework-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .firework-dot {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+        }
+
         /* Ocultar elementos */
         .hidden {
             display: none;
@@ -300,30 +268,21 @@
         /* Media queries para móviles */
         @media (max-width: 480px) {
             .card, .second-card {
-                width: 280px;
-                height: 400px;
+                height: 450px;
+                min-height: 450px;
             }
 
             .envelope {
                 font-size: 50px;
-                margin-bottom: 20px;
-            }
-
-            .open-btn {
-                padding: 12px 30px;
-                font-size: 18px;
+                margin-bottom: 25px;
             }
 
             .birthday-message h1 {
-                font-size: 32px;
+                font-size: 30px;
             }
 
             .birthday-message p {
-                font-size: 20px;
-            }
-
-            .second-card {
-                padding: 20px;
+                font-size: 22px;
             }
 
             .second-card h2 {
@@ -333,37 +292,14 @@
 
             .second-card p {
                 font-size: 16px;
-                line-height: 1.6;
                 margin-bottom: 15px;
-            }
-
-            .heart-decoration {
-                font-size: 16px;
-            }
-
-            .star-decoration {
-                font-size: 12px;
             }
         }
 
-        @media (max-height: 600px) {
+        @media (max-height: 700px) {
             .card, .second-card {
-                height: 350px;
-            }
-
-            .envelope {
-                font-size: 45px;
-                margin-bottom: 15px;
-            }
-
-            .second-card h2 {
-                font-size: 24px;
-                margin-bottom: 15px;
-            }
-
-            .second-card p {
-                font-size: 14px;
-                margin-bottom: 10px;
+                height: 85vh;
+                max-height: 450px;
             }
         }
     </style>
@@ -371,19 +307,22 @@
 <body>
     <div class="background" id="background"></div>
     
+    <div class="confetti-container" id="confettiContainer"></div>
+    <div class="firework-container" id="fireworkContainer"></div>
+    
     <div class="container">
         <!-- Primera carta -->
         <div class="card" id="firstCard">
-            <div class="heart-decoration">❤️</div>
-            <div class="heart-decoration">💕</div>
-            <div class="heart-decoration">💖</div>
-            <div class="heart-decoration">💗</div>
-            <div class="star-decoration">✨</div>
-            <div class="star-decoration">⭐</div>
-            <div class="star-decoration">✨</div>
-            <div class="star-decoration">⭐</div>
+            <div class="floating-decoration">❤️</div>
+            <div class="floating-decoration">💕</div>
+            <div class="floating-decoration">✨</div>
+            <div class="floating-decoration">💖</div>
+            <div class="floating-decoration">⭐</div>
+            <div class="floating-decoration">💗</div>
+            
             <div class="envelope">✉️</div>
             <button class="open-btn" onclick="openCard()">Abrir</button>
+            
             <div class="birthday-message" id="birthdayMessage">
                 <h1>¡Feliz Cumpleaños!</h1>
                 <p>Gabriela</p>
@@ -392,27 +331,21 @@
         
         <!-- Segunda carta -->
         <div class="second-card" id="secondCard">
-            <div class="heart-decoration">❤️</div>
-            <div class="heart-decoration">💕</div>
-            <div class="heart-decoration">💖</div>
-            <div class="heart-decoration">💗</div>
-            <div class="star-decoration">✨</div>
-            <div class="star-decoration">⭐</div>
-            <div class="star-decoration">✨</div>
-            <div class="star-decoration">⭐</div>
+            <div class="floating-decoration">✨</div>
+            <div class="floating-decoration">⭐</div>
+            <div class="floating-decoration">💖</div>
+            <div class="floating-decoration">🌸</div>
+            <div class="floating-decoration">✨</div>
+            <div class="floating-decoration">💕</div>
+            
             <h2>Gabriela</h2>
-            <p>
-                Espero que la pases súper lindo en tu día especial. 
-                Eres una chica increíble, llena de luz y alegría.
-            </p>
-            <p>
-                Tu sonrisa ilumina el mundo de todos los que te rodean.
-                Que este nuevo año de vida esté lleno de aventuras maravillosas,
-                sueños cumplidos y momentos inolvidables.
-            </p>
-            <p>
-                ¡Eres extraordinaria y mereces toda la felicidad del mundo!
-            </p>
+            
+            <p>Espero que la pases súper lindo en tu día especial. Eres una chica increíble, llena de luz y alegría.</p>
+            
+            <p>Tu sonrisa ilumina el mundo de todos los que te rodean. Que este nuevo año de vida esté lleno de aventuras maravillosas, sueños cumplidos y momentos inolvidables.</p>
+            
+            <p>¡Eres extraordinaria y mereces toda la felicidad del mundo!</p>
+            
             <div class="heart">❤️</div>
         </div>
     </div>
@@ -424,9 +357,13 @@
             if (!firstCardClicked) {
                 firstCardClicked = true;
                 
-                // Ocultar el sobre y el botón
+                // Ocultar elementos de la primera carta
                 document.querySelector('.envelope').style.display = 'none';
                 document.querySelector('.open-btn').style.display = 'none';
+                
+                // Ocultar decoraciones flotantes de la primera carta
+                const firstCardDecorations = document.querySelectorAll('#firstCard .floating-decoration');
+                firstCardDecorations.forEach(dec => dec.style.display = 'none');
                 
                 // Mostrar el mensaje de cumpleaños
                 document.getElementById('birthdayMessage').classList.add('show');
@@ -436,13 +373,16 @@
                 
                 // Después de 3 segundos, cambiar a la segunda carta
                 setTimeout(() => {
-                    document.getElementById('firstCard').classList.add('hidden');
+                    document.getElementById('firstCard').style.display = 'none';
                     document.getElementById('secondCard').classList.add('show');
                     
                     // Oscurecer el fondo
                     document.getElementById('background').classList.add('dark');
                     
-                    // Crear fuegos artificiales
+                    // Limpiar confeti
+                    document.getElementById('confettiContainer').innerHTML = '';
+                    
+                    // Crear fuegos artificiales después de un momento
                     setTimeout(() => {
                         createFireworks();
                     }, 500);
@@ -451,116 +391,82 @@
         }
 
         function createConfetti() {
+            const container = document.getElementById('confettiContainer');
             const colors = ['#FF1493', '#8B0000', '#4B0082', '#FFD700', '#FF69B4'];
             
             for (let i = 0; i < 50; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
-                    confetti.className = 'confetti show';
+                    confetti.className = 'confetti';
                     confetti.style.left = Math.random() * 100 + '%';
                     confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                     confetti.style.transform = `scale(${Math.random() * 1 + 0.5})`;
-                    document.body.appendChild(confetti);
-                    
-                    setTimeout(() => confetti.remove(), 3000);
+                    confetti.style.animation = 'confettiFall 3s ease-out forwards';
+                    container.appendChild(confetti);
                 }, i * 50);
             }
         }
 
         function createFireworks() {
-            const colors = ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFD700', '#FF69B4']; // Mayoría blancos, algunos dorados y rosas
+            const container = document.getElementById('fireworkContainer');
+            const colors = ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFD700', '#FF69B4'];
             
-            // Crear fuegos artificiales simples
             const launchFirework = () => {
-                const x = 15 + Math.random() * 70; // Entre 15% y 85% del ancho
-                const y = 15 + Math.random() * 35; // Entre 15% y 50% del alto
+                const x = 15 + Math.random() * 70;
+                const y = 15 + Math.random() * 35;
                 const mainColor = colors[Math.floor(Math.random() * colors.length)];
                 
-                // Crear punto de explosión simple
-                const explosion = document.createElement('div');
-                explosion.style.position = 'absolute';
-                explosion.style.left = x + '%';
-                explosion.style.top = y + '%';
-                explosion.style.width = '4px';
-                explosion.style.height = '4px';
-                explosion.style.backgroundColor = mainColor;
-                explosion.style.borderRadius = '50%';
-                explosion.style.transform = 'translate(-50%, -50%)';
-                explosion.style.zIndex = '5';
-                document.body.appendChild(explosion);
+                // Punto central de explosión
+                const center = document.createElement('div');
+                center.className = 'firework-dot';
+                center.style.left = x + '%';
+                center.style.top = y + '%';
+                center.style.opacity = '1';
+                center.style.transform = 'translate(-50%, -50%) scale(1)';
+                container.appendChild(center);
                 
-                // Expandir y desvanecer
+                // Expandir y desvanecer centro
                 setTimeout(() => {
-                    explosion.style.transition = 'all 0.8s ease-out';
-                    explosion.style.width = '8px';
-                    explosion.style.height = '8px';
-                    explosion.style.opacity = '0.8';
+                    center.style.transition = 'all 0.3s ease-out';
+                    center.style.transform = 'translate(-50%, -50%) scale(3)';
+                    center.style.opacity = '0';
                 }, 10);
                 
-                // Crear puntos simples alrededor
+                // Crear puntos alrededor
                 setTimeout(() => {
-                    explosion.remove();
-                    
-                    // Solo 8 puntos en círculo
                     for (let i = 0; i < 8; i++) {
                         const dot = document.createElement('div');
-                        dot.style.position = 'absolute';
+                        dot.className = 'firework-dot';
                         dot.style.left = x + '%';
                         dot.style.top = y + '%';
-                        dot.style.width = '3px';
-                        dot.style.height = '3px';
-                        dot.style.backgroundColor = i < 6 ? '#FFFFFF' : colors[Math.floor(Math.random() * colors.length)];
-                        dot.style.borderRadius = '50%';
-                        dot.style.transform = 'translate(-50%, -50%)';
-                        dot.style.zIndex = '5';
+                        dot.style.backgroundColor = i < 6 ? '#FFFFFF' : mainColor;
                         dot.style.opacity = '1';
                         
-                        const angle = (i * 45) * Math.PI / 180; // 8 puntos, 45 grados cada uno
+                        const angle = (i * 45) * Math.PI / 180;
                         const distance = 30;
                         
-                        document.body.appendChild(dot);
+                        container.appendChild(dot);
                         
-                        // Animar cada punto
                         setTimeout(() => {
                             dot.style.transition = 'all 1.5s ease-out';
                             dot.style.transform = `translate(calc(-50% + ${Math.cos(angle) * distance}px), calc(-50% + ${Math.sin(angle) * distance}px))`;
                             dot.style.opacity = '0';
                         }, 50);
-                        
-                        setTimeout(() => dot.remove(), 1600);
                     }
-                }, 100);
+                }, 200);
             };
             
-            // Lanzar fuegos artificiales de forma más espaciada y elegante
+            // Lanzar fuegos artificiales
+            launchFirework();
             let count = 0;
             const interval = setInterval(() => {
                 launchFirework();
                 count++;
-                if (count > 8) { // Solo 8 fuegos artificiales en total
+                if (count >= 8) {
                     clearInterval(interval);
                 }
-            }, 1200); // Más espacio entre cada uno
-            
-            // Primer fuego artificial
-            launchFirework();
+            }, 1200);
         }
-
-        // Agregar animación para las partículas
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes particleMove {
-                0% {
-                    transform: translate(-50%, -50%);
-                    opacity: 1;
-                }
-                100% {
-                    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty)));
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
